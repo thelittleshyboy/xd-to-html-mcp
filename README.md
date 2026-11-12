@@ -10,7 +10,7 @@ Not published to npm yet, so install from the tagged release (no registry accoun
 dsh plugin add git+https://github.com/thelittleshyboy/xd-to-html-mcp.git#v0.1.0
 ```
 
-Tag `v0.1.0` resolves to commit `dfebef2a6afa664e051a00dea3462fbd42520369`, which is the same commit the market index below pins.
+Tag `v0.1.0` is the install target; the market index below pins the same release commit.
 
 Or add this format-1 index source under Plugins → Discover and install from there:
 

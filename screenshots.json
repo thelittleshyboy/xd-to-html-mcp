@@ -1,0 +1,7 @@
+﻿{
+  "screenshots": [
+    { "path": "assets/screenshot-1.png", "caption": { "en": "Docs page exported from an XD artboard as selectable DOM text over transparent PNG layers", "zh": "从 XD 画板导出的文档页：可选中 DOM 文本叠加透明 PNG 图层" } },
+    { "path": "assets/screenshot-2.png", "caption": { "en": "Homepage hover state reproduced from the XD prototype interaction", "zh": "按 XD 原型交互还原的首页 hover 状态" } },
+    { "path": "assets/screenshot-3.png", "caption": { "en": "750px mobile artboard rendered at a 390px viewport", "zh": "750px 移动端画板在 390px 视口下的渲染" } }
+  ]
+}

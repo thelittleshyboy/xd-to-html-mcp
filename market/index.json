@@ -1,0 +1,81 @@
+{
+  "format": 1,
+  "title": {
+    "en": "XD to HTML MCP",
+    "zh": "XD 转 HTML MCP"
+  },
+  "description": {
+    "en": "Adobe XD readers and exporters for DeepSeek Harness: artboard inspection, PNG rendering, and interactive DOM/PNG HTML export with XD hover and tap states.",
+    "zh": "面向 DeepSeek Harness 的 Adobe XD 读取与导出插件：画板检查、PNG 渲染，以及保留 XD 悬停/点按状态的交互式 DOM/PNG HTML 导出。"
+  },
+  "metadata": {
+    "categories": {
+      "developer-tools": {
+        "title": {
+          "en": "Developer tools",
+          "zh": "开发者工具"
+        }
+      }
+    },
+    "labels": {
+      "adobe-xd": {
+        "title": {
+          "en": "Adobe XD",
+          "zh": "Adobe XD"
+        }
+      },
+      "html": {
+        "title": {
+          "en": "HTML export",
+          "zh": "HTML 导出"
+        }
+      }
+    }
+  },
+  "plugins": [
+    {
+      "name": "xd-to-html-mcp-harness",
+      "title": {
+        "en": "XD to HTML MCP",
+        "zh": "XD 转 HTML MCP"
+      },
+      "description": {
+        "en": "Adobe XD MCP tools for DeepSeek Harness, including accurate rendering and interactive HTML export",
+        "zh": "读取 Adobe XD 文件并导出可交互 HTML：普通文本层 + 透明 PNG 图形，保留悬停/点按状态与页面跳转。"
+      },
+      "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJBZG9iZSBYRCI+CiAgPHJlY3QgeD0iMyIgeT0iMyIgd2lkdGg9IjU4IiBoZWlnaHQ9IjU4IiByeD0iMTIiIGZpbGw9IiMxZTFlMWUiLz4KICA8cmVjdCB4PSI5IiB5PSI5IiB3aWR0aD0iNDYiIGhlaWdodD0iNDYiIHJ4PSI4IiBmaWxsPSIjMmMwYjRmIiBzdHJva2U9IiNmZjYxZjYiIHN0cm9rZS13aWR0aD0iMiIvPgogIDxwYXRoIGQ9Ik0xOSAyMWg1bDUgOCA1LThoNWwtNy41IDExTDM5IDQ0aC01bC01LTgtNSA4aC01bDcuNS0xMnoiIGZpbGw9IiNmZjYxZjYiLz4KICA8cGF0aCBkPSJNNDcgMjBoLTR2MmgydjIwaC0ydjJoN3YtMmgtMlYyMmgydi0yeiIgZmlsbD0iI2ZmZiIvPgo8L3N2Zz4K",
+      "author": "yeyanchen",
+      "homepage": "https://github.com/thelittleshyboy/xd-to-html-mcp",
+      "repository": {
+        "url": "https://github.com/thelittleshyboy/xd-to-html-mcp.git"
+      },
+      "metadata": {
+        "category": "developer-tools",
+        "labels": [
+          "adobe-xd",
+          "html"
+        ],
+        "keywords": [
+          "adobe-xd",
+          "mcp",
+          "html",
+          "design-to-code"
+        ]
+      },
+      "versions": [
+        {
+          "version": "0.1.0",
+          "publishTimestamp": 1794465354,
+          "source": {
+            "type": "git",
+            "url": "https://github.com/thelittleshyboy/xd-to-html-mcp.git",
+            "commit": "0fda1424e1b92d08672e7f7f1cd21642acc1bf1b"
+          },
+          "engines": {
+            "dsh": ">=0.2.2-0 <0.3.0"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -4,7 +4,23 @@ A self-contained DeepSeek Harness bundle for the repaired `adobe-xd-mcp` server.
 
 ## Install
 
-After publishing, install `xd-to-html-mcp-harness@0.1.0` from the Harness Plugins UI or plugin installer. To create a local archive from this package directory, run `npm pack`; the resulting file is `xd-to-html-mcp-harness-0.1.0.tgz`. Select that archive in the Harness bundle installer. The bundle adds the `adobe-xd-harness` MCP server to the current profile.
+Not published to npm yet, so install from the pinned git commit (no registry account needed):
+
+```bash
+dsh plugin add git+https://github.com/thelittleshyboy/xd-to-html-mcp.git#3bd1596c6bdb9596b5c5480c8f2e5b9fe5e83325
+```
+
+Or add this format-1 index source under Plugins → Discover and install from there:
+
+```
+https://raw.githubusercontent.com/thelittleshyboy/xd-to-html-mcp/main/market/index.json
+```
+
+To build a local archive instead, run `npm pack` in this package directory; the resulting `xd-to-html-mcp-harness-0.1.0.tgz` can be selected in the Harness bundle installer. The bundle adds the `adobe-xd-harness` MCP server to the current profile, so no separate global `npm install` is required.
+
+## Plugin directory status
+
+The bundle is listed through the community list `awesome-dsh-plugin/awesome-dsh-plugin` (PR #14590). Harness's **official** bundle catalog is installation-owned and generated at release time, so third-party packages cannot self-publish into it; see `OFFICIAL-CATALOG-SUBMISSION.md` for the maintainer-facing proposal.
 
 Requires DeepSeek Harness with the MCP client package and Node.js 18+ available as `node` on `PATH`. Chrome or Edge is needed for PNG rendering and rasterized HTML slices. The bundle has no install/build scripts. The service is included in this package; its dependencies are installed by the normal package manager.
 

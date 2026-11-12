@@ -1,6 +1,6 @@
 {
   "name": "xd-to-html-mcp-harness",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Adobe XD MCP tools for DeepSeek Harness, including accurate rendering and interactive HTML export",
   "type": "module",
   "exports": {
@@ -30,13 +30,24 @@
     "jszip": "^3.10.2",
     "zod": "^4.6.7"
   },
-  "dsh": { "bundle": { "patch": "./cordis.patch.yml" } },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/thelittleshyboy/xd-to-html-mcp.git"
   },
   "homepage": "https://github.com/thelittleshyboy/xd-to-html-mcp",
-  "bugs": { "url": "https://github.com/thelittleshyboy/xd-to-html-mcp/issues" },
-  "keywords": ["deepseek-harness", "harness-bundle", "mcp", "adobe-xd"]
+  "bugs": {
+    "url": "https://github.com/thelittleshyboy/xd-to-html-mcp/issues"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "harness-bundle",
+    "mcp",
+    "adobe-xd"
+  ]
 }

@@ -5,7 +5,7 @@ Status: the bundle is published as a public repository, installable from a forma
 ## Proposed bundle
 
 - npm package name: `xd-to-html-mcp-harness` (registry lookup returned 404 when checked; not published)
-- Current package version: `0.1.0`
+- Current package version: `0.1.1`
 - Bundle repository: https://github.com/thelittleshyboy/xd-to-html-mcp
 - Source MCP: https://github.com/srayan-uxd/adobe-xd-mcp
 - Proposed Harness repository change: `deepseek-ai/deepseek-harness`
@@ -19,8 +19,8 @@ Status: the bundle is published as a public repository, installable from a forma
 | Index reachable over HTTPS | done | raw.githubusercontent.com returns 200 with cache-busting query; jsDelivr mirror also 200 |
 | `dsh.bundle` manifest | done | `package.json` declares `dsh.bundle.patch: ./cordis.patch.yml` |
 | DSH engine range | done | `engines.dsh: ">=0.2.2-0 <0.3.0"` (matches 0.2.2-rc.1; `*` would not) |
-| Git install in real Harness | done | `plugin_manager install_bundle` from `#v0.1.0` → `xd-to-html-mcp-harness 0.1.0`, 101 packages |
-| MCP handshake from installed package | done | 25 tools, `xd_ping` 0.1.0, selfTest true, 9 artboards |
+| Git install in real Harness | done | `plugin_manager install_bundle` from `#v0.1.1` → `xd-to-html-mcp-harness 0.1.1`, 101 packages |
+| MCP handshake from installed package | done | 25 tools, `xd_ping` 0.1.1, selfTest true, 9 artboards |
 | Discover index source registered | done | `cordis.patch.yml` entry `id: plugin-market`, applies on restart |
 | Community list submission | open PR | https://github.com/awesome-dsh-plugin/awesome-dsh-plugin/pull/14590 |
 
@@ -46,7 +46,7 @@ An upstream maintainer must accept the package into the official release process
 The index resolves to a pinned release commit, so no registry account is needed:
 
 ```bash
-dsh plugin add git+https://github.com/thelittleshyboy/xd-to-html-mcp.git#v0.1.0
+dsh plugin add git+https://github.com/thelittleshyboy/xd-to-html-mcp.git#v0.1.1
 ```
 
 Or add the index source in Plugins → Discover:

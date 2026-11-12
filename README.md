@@ -4,11 +4,13 @@ A self-contained DeepSeek Harness bundle for the repaired `adobe-xd-mcp` server.
 
 ## Install
 
-Not published to npm yet, so install from the pinned git commit (no registry account needed):
+Not published to npm yet, so install from the tagged release (no registry account needed):
 
 ```bash
-dsh plugin add git+https://github.com/thelittleshyboy/xd-to-html-mcp.git#3bd1596c6bdb9596b5c5480c8f2e5b9fe5e83325
+dsh plugin add git+https://github.com/thelittleshyboy/xd-to-html-mcp.git#v0.1.0
 ```
+
+Tag `v0.1.0` resolves to commit `dfebef2a6afa664e051a00dea3462fbd42520369`, which is the same commit the market index below pins.
 
 Or add this format-1 index source under Plugins → Discover and install from there:
 

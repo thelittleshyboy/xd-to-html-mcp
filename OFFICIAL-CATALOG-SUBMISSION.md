@@ -15,16 +15,16 @@ Status: the bundle is published as a public repository, installable from a forma
 | Step | State | Evidence |
 | --- | --- | --- |
 | Public repository | done | `api.github.com/repos/thelittleshyboy/xd-to-html-mcp` returns 200 |
-| Format-1 market index | done | `market/index.json`, 2797 bytes, passes `parseMarketIndex` |
+| Format-1 market index | done | `market/index.json`, 2637 bytes, passes `parseMarketIndex` |
 | Index reachable over HTTPS | done | raw.githubusercontent.com returns 200 with cache-busting query; jsDelivr mirror also 200 |
 | `dsh.bundle` manifest | done | `package.json` declares `dsh.bundle.patch: ./cordis.patch.yml` |
 | DSH engine range | done | `engines.dsh: ">=0.2.2-0 <0.3.0"` (matches 0.2.2-rc.1; `*` would not) |
-| Git install in real Harness | done | `plugin_manager install_bundle` → `xd-to-html-mcp-harness 0.1.0`, 101 packages |
+| Git install in real Harness | done | `plugin_manager install_bundle` from `#v0.1.0` → `xd-to-html-mcp-harness 0.1.0`, 101 packages |
 | MCP handshake from installed package | done | 25 tools, `xd_ping` 0.1.0, selfTest true, 9 artboards |
 | Discover index source registered | done | `cordis.patch.yml` entry `id: plugin-market`, applies on restart |
 | Community list submission | open PR | https://github.com/awesome-dsh-plugin/awesome-dsh-plugin/pull/14590 |
 
-The community PR's `check` job passed. The `Submission gate` job reports exactly one blocker: `repository is 0.1 days old (needs 1)`. That gate re-runs itself on a schedule; resubmitting, pushing, or reopening the PR does not help.
+The community PR's `check` job passed. The `Submission gate` job reports exactly one blocker: `repository is 0.1 days old (needs 1)`. The repository was created `2026-11-12T05:54:49Z`, so that gate clears at `2026-11-13T05:54:49Z`; it re-runs itself on a schedule, and resubmitting, pushing, or reopening the PR does not help.
 
 ## Important catalog constraint
 
@@ -43,10 +43,10 @@ An upstream maintainer must accept the package into the official release process
 
 ## Installing without npm
 
-The index resolves to a pinned git commit, so no registry account is needed:
+The index resolves to a pinned release commit, so no registry account is needed:
 
 ```bash
-dsh plugin add git+https://github.com/thelittleshyboy/xd-to-html-mcp.git#3bd1596c6bdb9596b5c5480c8f2e5b9fe5e83325
+dsh plugin add git+https://github.com/thelittleshyboy/xd-to-html-mcp.git#v0.1.0
 ```
 
 Or add the index source in Plugins → Discover:

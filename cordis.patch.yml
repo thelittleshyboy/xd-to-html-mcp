@@ -1,0 +1,18 @@
+- insert:
+    - id: adobe-xd-mcp-harness
+      name: '@deepseek-ai/dsh-mcp-client'
+      meta:
+        title: Adobe XD
+        description: Read Adobe XD designs, render artboards, and export interactive HTML.
+      config:
+        serverName: adobe-xd-harness
+        transport: stdio
+        command: node
+        args:
+          - '-e'
+          - "import('xd-to-html-mcp-harness/server')"
+        cwd: !!js process.env.DSH_PROFILE_DIR ?? process.cwd()
+        env:
+          XD_MCP_ROOTS: !!js process.env.ADOBE_XD_MCP_ROOTS ?? process.env.DSH_PROFILE_DIR ?? process.cwd()
+        toolCallTimeoutMs: 120000
+        failOnStartupError: true

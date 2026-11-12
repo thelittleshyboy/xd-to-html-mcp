@@ -17,9 +17,13 @@
     "LICENSE",
     "NOTICE.md",
     "OFFICIAL-CATALOG-SUBMISSION.md",
+    "market/*.json",
     "dist/*.js"
   ],
-  "engines": { "node": ">=18" },
+  "engines": {
+    "node": ">=18",
+    "dsh": ">=0.2.2-0 <0.3.0"
+  },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.32.2",
     "jszip": "^3.10.2",

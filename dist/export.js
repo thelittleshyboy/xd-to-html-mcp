@@ -496,7 +496,7 @@ function convert(n, ctx, depth, geometry, offset) {
             const stateId = s.meta?.ux?.stateId ?? s.id;
             ctx.chain.add(stateId);
             try {
-                return { name: s.name, stateId, node: convert(s, ctx, depth + 1, undefined, offset) };
+                return { name: s.name, stateId, offset: { x: -(s.meta?.ux?.symbolPaddingLeft ?? 0), y: -(s.meta?.ux?.symbolPaddingTop ?? 0) }, node: convert(s, ctx, depth + 1, undefined, offset) };
             }
             finally {
                 ctx.chain.delete(stateId);

@@ -1,16 +1,16 @@
 # XD to HTML MCP for DeepSeek Harness
 
-A self-contained DeepSeek Harness bundle for the repaired `adobe-xd-mcp` server. Package name: `xd-to-html-mcp-harness`; current version: `0.1.1`. The bundle includes the compiled server and declares its runtime dependencies; it does not require a separate global `npm install`.
+A self-contained DeepSeek Harness bundle for the repaired `adobe-xd-mcp` server. Package name: `xd-to-html-mcp-harness`; current version: `0.1.2`. The bundle includes the compiled server and declares its runtime dependencies; it does not require a separate global `npm install`.
 
 ## Install
 
 Not published to npm yet, so install from the tagged release (no registry account needed):
 
 ```bash
-dsh plugin add git+https://github.com/thelittleshyboy/xd-to-html-mcp.git#v0.1.1
+dsh plugin add git+https://github.com/thelittleshyboy/xd-to-html-mcp.git#v0.1.2
 ```
 
-Tag `v0.1.1` is the install target; the market index below pins the same release commit.
+Tag `v0.1.2` is the install target; the market index below pins the same release commit.
 
 Or add this format-1 index source under Plugins → Discover and install from there:
 
@@ -18,7 +18,7 @@ Or add this format-1 index source under Plugins → Discover and install from th
 https://raw.githubusercontent.com/thelittleshyboy/xd-to-html-mcp/main/market/index.json
 ```
 
-To build a local archive instead, run `npm pack` in this package directory; the resulting `xd-to-html-mcp-harness-0.1.1.tgz` can be selected in the Harness bundle installer. The bundle adds the `adobe-xd-harness` MCP server to the current profile, so no separate global `npm install` is required.
+To build a local archive instead, run `npm pack` in this package directory; the resulting `xd-to-html-mcp-harness-0.1.2.tgz` can be selected in the Harness bundle installer. The bundle adds the `adobe-xd-harness` MCP server to the current profile, so no separate global `npm install` is required.
 
 ## Plugin directory status
 
@@ -38,7 +38,7 @@ The service is local-only and read-only. Design file text is returned to the con
 - Render artboards and individual layers through a local Chrome/Edge browser.
 - Export full-height HTML with selectable DOM text, transparent PNG graphics, component state transitions, hover/tap interactions, and artboard navigation.
 
-The HTML exporter keeps the required `assets/` directory beside its HTML pages. Component state changes are opacity crossfades, not vector path morphs. Missing local design fonts fall back to installed system fonts. Some less common XD effects may not be represented exactly.
+The HTML exporter keeps the required `assets/` directory beside its HTML pages. Component state changes use opacity crossfades and animate component size and state padding offsets; individual layer geometry and vector path morphs are not reproduced. Missing local design fonts fall back to installed system fonts. Some less common XD effects may not be represented exactly.
 
 ## Source and license
 

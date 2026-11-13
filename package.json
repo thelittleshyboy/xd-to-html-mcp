@@ -1,6 +1,6 @@
 {
   "name": "xd-to-html-mcp-harness",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Adobe XD MCP tools for DeepSeek Harness, including accurate rendering and interactive HTML export",
   "type": "module",
   "exports": {

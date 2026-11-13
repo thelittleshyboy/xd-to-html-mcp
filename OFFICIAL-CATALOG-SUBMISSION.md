@@ -20,7 +20,7 @@ Status: the bundle is published as a public repository, installable from a forma
 | `dsh.bundle` manifest | done | `package.json` declares `dsh.bundle.patch: ./cordis.patch.yml` |
 | DSH engine range | done | `engines.dsh: ">=0.2.2-0 <0.3.0"` (matches 0.2.2-rc.1; `*` would not) |
 | Git install in real Harness | done | `plugin_manager install_bundle` from `#v0.1.1` → `xd-to-html-mcp-harness 0.1.1`, 101 packages |
-| MCP handshake from installed package | done | 25 tools, `xd_ping` 0.1.1, selfTest true, 9 artboards |
+| MCP handshake from installed package | done | 25 tools, `xd_ping` 0.1.1, selfTest true |
 | Discover index source registered | done | `cordis.patch.yml` entry `id: plugin-market`, applies on restart |
 | Community list submission | open PR | https://github.com/awesome-dsh-plugin/awesome-dsh-plugin/pull/14590 |
 

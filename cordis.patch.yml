@@ -1,11 +1,11 @@
 - insert:
-    - id: adobe-xd-mcp-harness
-      name: '@deepseek-ai/dsh-mcp-client'
+    - id: xd-to-html-mcp-harness
+      name: '@deepseek-ai/xd-to-html'
       meta:
-        title: Adobe XD
+        title: Adobe XD to Html
         description: Read Adobe XD designs, render artboards, and export interactive HTML.
       config:
-        serverName: adobe-xd-harness
+        serverName: xd-to-html-harness
         transport: stdio
         command: node
         args:

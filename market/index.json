@@ -64,12 +64,12 @@
       },
       "versions": [
         {
-          "version": "0.1.1",
-          "publishTimestamp": 1794475132,
+          "version": "0.1.2",
+          "publishTimestamp": 1794538989,
           "source": {
             "type": "git",
             "url": "https://github.com/thelittleshyboy/xd-to-html-mcp.git",
-            "commit": "4c73a6774242f8846041c765cf27026ac7bb4dcc"
+            "commit": "0dfbc951ded7ac9a3839f7fcfd93b44e0a1a4bda"
           },
           "engines": {
             "dsh": ">=0.2.2-0 <0.3.0"

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.4 - 2026-11-16
+
+- Fix the Cordis MCP client module identifier so the bundle activates in DeepSeek Harness.
+
 ## 0.1.3 - 2026-11-16
 
 - Require a fresh, one-use destination confirmation for every artboard HTML export; validate the selected parent and folder name before writing.

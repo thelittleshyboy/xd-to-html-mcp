@@ -1,6 +1,6 @@
 - insert:
     - id: xd-to-html-mcp-harness
-      name: '@deepseek-ai/xd-to-html'
+      name: '@deepseek-ai/dsh-mcp-client'
       meta:
         title: Adobe XD to Html
         description: Read Adobe XD designs, render artboards, and export interactive HTML.

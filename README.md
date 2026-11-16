@@ -43,3 +43,5 @@ The HTML exporter keeps the required `assets/` directory beside its HTML pages. 
 ## Source and license
 
 This bundle is maintained at [`thelittleshyboy/xd-to-html-mcp`](https://github.com/thelittleshyboy/xd-to-html-mcp) and contains modifications to the upstream [`srayan-uxd/adobe-xd-mcp`](https://github.com/srayan-uxd/adobe-xd-mcp), distributed under MIT. See `LICENSE` and `NOTICE.md` for attribution and terms. Harness integration and package metadata are maintained in this bundle.
+
+[![M8ven Score](https://m8ven.ai/badge/mcp/thelittleshyboy-xd-to-html-mcp-tynhs2?v=a000461db77ddf3f4c0fccdf0a4adcb7)](https://m8ven.ai/mcp/thelittleshyboy-xd-to-html-mcp-tynhs2?s=readme)

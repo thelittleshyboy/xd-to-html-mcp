@@ -171,6 +171,9 @@ function normalizeText(n, m, ctx) {
     const alignment = attrs.paragraphAlign ?? "left";
     const frame = t.frame ?? {};
     const isArea = frame.type === "area";
+    const frameAlignOffset = typeof frame.width === "number"
+        ? frame.width * (alignment === "center" ? 0.5 : alignment === "right" ? 1 : 0)
+        : 0;
     // per-line x offsets stored by XD: negative for right/centre aligned point text
     const lineXs = [];
     const layoutLines = [];
@@ -206,7 +209,7 @@ function normalizeText(n, m, ctx) {
             widthApprox = true;
         }
     }
-    const left = isArea ? origin.x : origin.x + Math.min(minX, 0);
+    const left = isArea ? origin.x : origin.x + frameAlignOffset + Math.min(minX, 0);
     const lineCount = Math.max(lines.length, 1);
     const height = isArea && typeof frame.height === "number" ? frame.height : lineCount * lh;
     const runs = [];
@@ -261,7 +264,7 @@ function normalizeText(n, m, ctx) {
             // offsets index into `characters` (soft breaks were replaced one-for-one by "\n")
             styledRuns: runs.length ? runs : undefined,
             baselineY: round(baselineY),
-            layoutLines: layoutLines.length ? layoutLines.map(line => ({ ...line, x: round(origin.x + line.x), y: round(origin.y + line.y) })) : undefined,
+            layoutLines: layoutLines.length ? layoutLines.map(line => ({ ...line, x: round(origin.x + frameAlignOffset + line.x), y: round(origin.y + line.y) })) : undefined,
             widthApprox: widthApprox || undefined,
         }),
         box: { x: round(left), y: round(top), width: round(width), height: round(height) },

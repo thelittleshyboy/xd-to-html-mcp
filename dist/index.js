@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { randomUUID } from "node:crypto";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
@@ -15,6 +16,38 @@ import { exportArtboard, exportComponent, listComponents, sharedAssets, artboard
 const server = new McpServer({ name: "adobe-xd-mcp", version: VERSION });
 const file = z.string().describe("Absolute path to a .xd file");
 const MAX_OUT = 400_000;
+const HTML_DESTINATION_TTL = 10 * 60 * 1000;
+const pendingHtmlDestinations = new Map();
+function requestHtmlDestination(file, artboardId) {
+    const now = Date.now();
+    for (const [id, pending] of pendingHtmlDestinations)
+        if (pending.expiresAt <= now)
+            pendingHtmlDestinations.delete(id);
+    while (pendingHtmlDestinations.size >= 100)
+        pendingHtmlDestinations.delete(pendingHtmlDestinations.keys().next().value);
+    const confirmationId = randomUUID();
+    pendingHtmlDestinations.set(confirmationId, { file, artboardId, expiresAt: now + HTML_DESTINATION_TTL });
+    return confirmationId;
+}
+async function confirmHtmlDestination(input) {
+    const pending = pendingHtmlDestinations.get(input.confirmationId);
+    if (!pending || pending.expiresAt <= Date.now()) {
+        pendingHtmlDestinations.delete(input.confirmationId);
+        throw new Error("Destination confirmation is unknown, expired, or already used. Start a new export request.");
+    }
+    if (pending.file !== input.file || pending.artboardId !== input.artboardId) {
+        throw new Error("Destination confirmation does not match this XD file and artboard.");
+    }
+    if (!input.saveDirectory || !path.isAbsolute(input.saveDirectory))
+        throw new Error("Provide an absolute parent directory for the HTML resource folder.");
+    const name = input.folderName ?? "";
+    if (!name || name !== name.trim() || name === "." || name === ".." || /[\u0000-\u001f<>:\"/\\|?*]/.test(name) || /[. ]$/.test(name) || /^(con|prn|aux|nul|com[1-9]|lpt[1-9])(?:\..*)?$/i.test(name)) {
+        throw new Error("Folder name must be one valid path segment without separators, reserved characters, or trailing dots/spaces.");
+    }
+    const destination = await assertInsideRoots(path.join(input.saveDirectory, name));
+    pendingHtmlDestinations.delete(input.confirmationId);
+    return destination;
+}
 const text = (v, max = MAX_OUT) => {
     const s = typeof v === "string" ? v : JSON.stringify(v, null, 2);
     return {
@@ -279,15 +312,29 @@ server.registerTool("xd_export_svg", {
     return text(JSON.stringify({ ...meta, svg: r.svg }), MAX_EXPORT_OUT);
 }));
 server.registerTool("xd_export_html", {
-    description: "Export a complete artboard as HTML with ordinary selectable DOM text and separate transparent PNG graphics/background slices. Requires local Chrome/Edge. Reads XD component hover/tap states, duration/easing and artboard links; state changes use opacity transitions (no vector morphing). Returns HTML path, asset paths, dimensions, interaction counts, warnings, fonts and missing images. Keep the assets folder with the HTML and export linked artboards into the same folder.",
+    description: "Export a complete artboard as HTML with ordinary DOM text and separate transparent PNG graphics/background slices. Requires local Chrome/Edge. Every artboard export has a mandatory two-step destination confirmation: first call without confirmationId to get a request ID and ask the user for an absolute parent directory and folder name; do not write files or guess the destination. After the user confirms, call again with that confirmationId, saveDirectory, and folderName. Each confirmation is one-use, expires after 10 minutes, and is bound to the same file and artboard. Keep the assets folder with the HTML and export linked artboards into the same folder. State animation uses opacity/size/offset transitions, not per-layer vector morphing.",
     inputSchema: {
         file,
         artboard: z.string().describe("Artboard id or name"),
-        saveTo: z.string().describe("Absolute output folder inside the allowed roots; existing exports are preserved"),
+        confirmationId: z.string().optional().describe("One-use ID returned by the first no-write call, after the user confirms the destination"),
+        saveDirectory: z.string().optional().describe("Absolute parent directory inside the allowed roots; required with folderName after confirmation"),
+        folderName: z.string().optional().describe("New or existing single folder name for this artboard's HTML resource package"),
     },
-}, guard(async ({ file, artboard, saveTo }) => {
+}, guard(async ({ file, artboard, confirmationId, saveDirectory, folderName }) => {
     const doc = await openXd(file);
-    return text(await exportHtml(doc, resolveArtboard(doc, artboard), saveTo));
+    const resolved = resolveArtboard(doc, artboard);
+    if (!confirmationId)
+        return text({
+            status: "destination_confirmation_required",
+            confirmationId: requestHtmlDestination(doc.file, resolved.id),
+            file: doc.file,
+            artboard: resolved.name,
+            expiresInSeconds: HTML_DESTINATION_TTL / 1000,
+            requiredInputs: ["saveDirectory", "folderName"],
+            instruction: "Ask the user for the absolute parent directory and folder name. Do not export until they provide both.",
+        });
+    const saveTo = await confirmHtmlDestination({ confirmationId, file: doc.file, artboardId: resolved.id, saveDirectory, folderName });
+    return text(await exportHtml(doc, resolved, saveTo));
 }));
 server.registerTool("xd_font_report", {
     description: "Fonts used by the file (or one artboard): family, weights/styles, sizes, how often, whether each family is installed on this computer, a substitution table for missing weights (e.g. Medium -> Regular), and a licence note. Run this before rebuilding a design elsewhere and warn the user about missing fonts. Only reads font names; never creates or alters fonts.",
